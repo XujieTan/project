@@ -1,0 +1,44 @@
+{% if topics.has_other_pages %}
+    <nav aria-label="Page navigation example" class="mb-4">
+        <ul class="pagination">
+            {% if topics.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ topics.previous_page_number }}">
+                        上一页
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        上一页
+                    </span>
+                </li>
+            {% endif %}
+            {% for i in topics.paginator.page_range %}
+                {% if topics.number == i %}
+                    <li class="page-item active">
+                        <span class="page-link">
+                            {{ i }}
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ i }}">{{i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if topics.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ topics.next_page_number }}">下一页</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        下一页
+                    </span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
